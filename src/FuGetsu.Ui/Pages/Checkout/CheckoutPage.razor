@@ -1,0 +1,72 @@
+﻿@attribute [Route(Routes.Checkout.Page)]
+@using FuGetsu.Ui.Features
+@using FuGetsu.Ui.Pages.Products
+@inject CartState CartState
+@inject CheckoutService CheckoutService
+
+@inherits AppComponentBase
+
+<AppHeader Title="Cart">
+    <MudButton OnClick="Checkout">
+        Go to payment
+    </MudButton>
+</AppHeader>
+
+<MudDataGrid T="CartItem"
+             Items="@cartItems"
+             ReadOnly="false"
+             EditMode="DataGridEditMode.Cell"
+             CommittedItemChanges="CommittedItemChanges">
+    <Columns>
+        <PropertyColumn Property="x => x.Product.Name" IsEditable="false" />
+        <PropertyColumn Property="x => x.Product.Description" IsEditable="false" />
+        <PropertyColumn Property="x => x.Price" IsEditable="false" />
+        <PropertyColumn Property="x => x.Total" IsEditable="false" />
+        <PropertyColumn Property="x => x.Quantity" />
+        <TemplateColumn>
+            <EditTemplate>
+                <div class="d-flex justify-end">
+                    <MudTooltip Text="Remove item">
+                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                       Size="Size.Small"
+                                       OnClick="() => RemoveCartItem(context.Item)"
+                                       Color="Color.Error">
+                        </MudIconButton>
+                    </MudTooltip>
+                </div>
+            </EditTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    private IEnumerable<CartItem>? cartItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Reload();
+    }
+
+    private async Task RemoveCartItem(CartItem cartItem)
+    {
+        await CartState.RemoveAsync(cartItem.Product.Id, ComponentDetached);
+        await Reload();
+        SnackbarService.ShowSuccess($"Removed {cartItem.Product.Name}");
+    }
+
+    private async Task Reload()
+    {
+        var cart = await CartState.GetAsync(ComponentDetached);
+        cartItems = cart.Items;
+    }
+
+    private async Task CommittedItemChanges(CartItem item)
+    {
+        await CartState.UpdateQuantityAsync(item.Product.Id, item.Quantity, ComponentDetached);
+    }
+
+    private async Task Checkout()
+    {
+        await CheckoutService.Checkout(ComponentDetached);
+    }
+}

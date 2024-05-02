@@ -1,0 +1,18 @@
+﻿<AppPageTitle Title="@Title" />
+
+<MudGrid Justify="Justify.SpaceBetween" Class="mt-0">
+    <MudItem>
+        <MudText Typo="Typo.h4" GutterBottom="true">@Title</MudText>
+    </MudItem>
+    <MudItem>
+        @ChildContent
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter, EditorRequired]
+    public required string Title { get; init; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

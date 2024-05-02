@@ -1,0 +1,66 @@
+﻿@using FuGetsu.Ui.Features
+@using FuGetsu.Ui.Pages.Cart
+@using FuGetsu.Ui.Pages.Products
+@inject CartState CartState
+@inject NavigationManager NavigationManager
+@inherits AppComponentBase
+
+<MudMenu Dense="true" ActivationEvent="@MouseEvent.LeftClick" AnchorOrigin="Origin.BottomCenter">
+    <ActivatorContent>
+        <MudBadge BadgeClass="my-badge-cart-overlap"
+                  Content="Quantity"
+                  Color="Color.Primary"
+                  Overlap="true">
+            <NavIconButton IsDarkMode="IsDarkMode"
+                           Title="Cart"
+                           Icon="@Icons.Material.Outlined.ShoppingCart" />
+        </MudBadge>
+    </ActivatorContent>
+    <ChildContent>
+        @if (cartItems.Count > 0)
+        {
+            @foreach (var item in cartItems)
+            {
+                <MudMenuItem AutoClose="false">
+                    <CartItemOverview Item="item" />
+                </MudMenuItem>
+            }
+            <MudPaper Elevation="0" Class="d-flex justify-end my-2 mx-3">
+                <MudButton OnClick="Checkout" Color="Color.Primary" Variant="Variant.Filled">Checkout</MudButton>
+            </MudPaper>
+        }
+    </ChildContent>
+</MudMenu>
+
+@code {
+    [Parameter]
+    public bool IsDarkMode { get; set; }
+
+    private int Quantity = 0;
+    private List<CartItem> cartItems = [];
+    IDisposable? cartStateSubscription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cartStateSubscription = CartState.NotifyOnChange(
+            EventCallback.Factory.Create(this, RefreshQuantity));
+        await RefreshQuantity();
+    }
+
+    private void Checkout()
+    {
+        NavigationManager.ToCheckout();
+    }
+
+    private async Task RefreshQuantity()
+    {
+        var cart = await CartState.GetAsync(ComponentDetached);
+        Quantity = cart.Quantity;
+        cartItems = cart.Items;
+    }
+
+    protected override void OnComponentDispose()
+    {
+        cartStateSubscription?.Dispose();
+    }
+}

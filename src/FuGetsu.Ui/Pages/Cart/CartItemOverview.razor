@@ -1,0 +1,28 @@
+﻿@using FuGetsu.Ui.Features
+
+<MudGrid>
+    <MudItem xs="2">
+        @if (Item.Product.Images.Count > 0)
+        {
+            <MudImage ObjectFit="ObjectFit.Cover" Width="50" Src="@Item.Product.Images[0]" Class="mx-auto my-auto rounded-lg" />
+        }
+    </MudItem>
+    <MudItem xs="10">
+        <MudGrid>
+            <MudItem xs="12">
+                <MudText>@Item.Product.Name</MudText>
+            </MudItem>
+            <MudItem xs="6">
+                <MudText>@Item.Quantity item@(Item.Quantity > 1 ? "s" : "")</MudText>
+            </MudItem>
+            <MudItem xs="6">
+                <MudText>@Item.Total @Item.Product.Currency.ToUpperInvariant()</MudText>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter, EditorRequired]
+    public required CartItem Item { get; init; }
+}

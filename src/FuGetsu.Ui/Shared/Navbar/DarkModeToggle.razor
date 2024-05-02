@@ -1,0 +1,32 @@
+﻿@using FuGetsu.Ui.Core.Storages
+@inject IUserStorage UserStorage
+
+@inherits AppComponentBase
+
+<NavIconButton IsDarkMode="IsDarkMode"
+               Title="Light"
+               Icon="@Icons.Material.Filled.LightMode"
+               TitleDark="Dark"
+               IconDark="@Icons.Material.Outlined.DarkMode"
+               OnClick="ToggleDarkMode" />
+
+@code {
+    [Parameter]
+    public bool IsDarkMode { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> IsDarkModeChanged { get; set; }
+
+    private async Task ToggleDarkMode()
+    {
+        IsDarkMode = !IsDarkMode;
+        await UserStorage.SetIsDarkModeAsync(IsDarkMode, ComponentDetached);
+        await IsDarkModeChanged.InvokeAsync(IsDarkMode);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsDarkMode = await UserStorage.GetIsDarkModeAsync(ComponentDetached);
+        await IsDarkModeChanged.InvokeAsync(IsDarkMode);
+    }
+}

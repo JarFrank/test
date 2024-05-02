@@ -1,0 +1,25 @@
+﻿@if (IsDarkMode)
+{
+    <MudIconButton Icon="@Icon"
+                   OnClick="OnClick"
+                   Title="@Title" />
+}
+else
+{
+    <MudIconButton Icon="@(IconDark ?? Icon)"
+                   Style="color: white"
+                   OnClick="OnClick"
+                   Title="@(TitleDark ?? Title)" />
+}
+
+@code {
+    [Parameter, EditorRequired] public required bool IsDarkMode { get; set; }
+
+    [Parameter, EditorRequired] public required string Title { get; set; }
+    [Parameter, EditorRequired] public required string Icon { get; set; }
+
+    [Parameter] public required string? TitleDark { get; set; }
+    [Parameter] public required string? IconDark { get; set; }
+
+    [Parameter] public EventCallback OnClick { get; set; }
+}

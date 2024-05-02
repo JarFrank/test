@@ -1,0 +1,18 @@
+﻿@if (Images.Count > 0)
+{
+    <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="true" ShowBullets="false" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+        @foreach (var image in Images)
+        {
+            <MudCarouselItem Transition="Transition.Slide">
+                <div class="d-flex" style="height:100%">
+                    <MudImage ObjectFit="ObjectFit.Cover" Src="@image" Width="200" Height="150" Elevation="25" Class="mx-auto my-auto rounded-lg" />
+                </div>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+}
+
+@code {
+    [Parameter]
+    public required IReadOnlyList<string> Images { get; init; }
+}

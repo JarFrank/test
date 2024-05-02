@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuGetsu.Ui", "FuGetsu.Ui\FuGetsu.Ui.csproj", "{6C22961A-13F4-4AD7-B89D-6008D20F4CD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".SolutionItems", ".SolutionItems", "{B79CDFA4-ADA8-48EC-A3B7-766FD1C4CC7B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		FuGetsu.BuildProperties = FuGetsu.BuildProperties
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuGetsu.Infrastructure.Stripe", "FuGetsu.Infrastructure.Stripe\FuGetsu.Infrastructure.Stripe.csproj", "{E754C229-DD38-420C-8AB9-A2B0EAA298D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuGetsu.Api", "FuGetsu.Api\FuGetsu.Api.csproj", "{7FB226E6-3C1A-4257-B62D-83069152956F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuGetsu.Shared", "FuGetsu.Shared\FuGetsu.Shared.csproj", "{1CD2A18A-72B4-401E-8D8C-411A2D190935}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuGetsu.Application", "FuGetsu.Application\FuGetsu.Application.csproj", "{E9C47D2D-78B6-43F3-BE52-3E26891C2E5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C22961A-13F4-4AD7-B89D-6008D20F4CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C22961A-13F4-4AD7-B89D-6008D20F4CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C22961A-13F4-4AD7-B89D-6008D20F4CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C22961A-13F4-4AD7-B89D-6008D20F4CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E754C229-DD38-420C-8AB9-A2B0EAA298D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E754C229-DD38-420C-8AB9-A2B0EAA298D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E754C229-DD38-420C-8AB9-A2B0EAA298D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E754C229-DD38-420C-8AB9-A2B0EAA298D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB226E6-3C1A-4257-B62D-83069152956F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB226E6-3C1A-4257-B62D-83069152956F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB226E6-3C1A-4257-B62D-83069152956F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB226E6-3C1A-4257-B62D-83069152956F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD2A18A-72B4-401E-8D8C-411A2D190935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD2A18A-72B4-401E-8D8C-411A2D190935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD2A18A-72B4-401E-8D8C-411A2D190935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD2A18A-72B4-401E-8D8C-411A2D190935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9C47D2D-78B6-43F3-BE52-3E26891C2E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C47D2D-78B6-43F3-BE52-3E26891C2E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9C47D2D-78B6-43F3-BE52-3E26891C2E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9C47D2D-78B6-43F3-BE52-3E26891C2E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D63CCB48-FCB5-4317-985C-4EE4FB11FB3C}
+	EndGlobalSection
+EndGlobal

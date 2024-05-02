@@ -1,0 +1,22 @@
+﻿<MudCard Class="py-8 d-flex flex-column flex-grow-1" Style="width: 300px; min-height: 100%;">
+    <MudCardHeader Class="flex-grow-1">
+        <MudText Class="align-self-start" Typo="Typo.h3">@Product.Name</MudText>
+    </MudCardHeader>
+    <MudCardContent Class="">
+        <MudText Class="flex-grow-1" Typo="Typo.body1">@Product.Description</MudText>
+        <AppCarousel Images="@Product.Images" />
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton OnClick="OnCheckoutClick">Add</MudButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter]
+    public required ProductDto Product { get; init; }
+
+    [Parameter, EditorRequired]
+    public EventCallback<ProductDto?> OnAddClick { get; set; }
+
+    private Task OnCheckoutClick() => OnAddClick.InvokeAsync(Product);
+}

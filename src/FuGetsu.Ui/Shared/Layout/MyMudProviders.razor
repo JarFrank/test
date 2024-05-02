@@ -1,0 +1,22 @@
+﻿@inject ISnackbar Snackbar
+
+<MudPopoverProvider></MudPopoverProvider>
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true" />
+<MudSnackbarProvider />
+
+@code {
+    protected override void OnInitialized()
+    {
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
+        Snackbar.Configuration.MaxDisplayedSnackbars = 5;
+        Snackbar.Configuration.SnackbarVariant = Variant.Filled;
+        Snackbar.Configuration.PreventDuplicates = true;
+
+        Snackbar.Configuration.ShowTransitionDuration = (int)TimeSpan.FromSeconds(0.5).TotalMilliseconds;
+        Snackbar.Configuration.VisibleStateDuration = (int)TimeSpan.FromSeconds(2).TotalMilliseconds;
+        Snackbar.Configuration.HideTransitionDuration = (int)TimeSpan.FromSeconds(0.5).TotalMilliseconds;
+    }
+}

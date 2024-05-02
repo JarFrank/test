@@ -1,0 +1,45 @@
+﻿@attribute [Route(Routes.Products.Page)]
+@attribute [Route(Routes.Products.Complete)]
+@attribute [Route(Routes.Products.Abandoned)]
+@using FuGetsu.Ui.Features
+@using FuGetsu.Ui.Pages.Products
+@inject IProductsClient ProductsClient
+@inject CartState CartState
+
+@inherits AppComponentBase
+
+<AppHeader Title="Passes" />
+
+@if (products is null)
+{
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+    <MudSkeleton />
+    <MudSkeleton Animation="Animation.False" />
+    <MudSkeleton Animation="Animation.Wave" />
+}
+else
+{
+    <MudStack Wrap="@Wrap.Wrap" Spacing="4" Row="true" AlignItems="AlignItems.Stretch">
+        @foreach (var product in products)
+        {
+            <ProductCard Product="@product" OnAddClick="AddProduct" />
+        }
+    </MudStack>
+}
+
+@code {
+    private IReadOnlyList<ProductDto>? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await ProductsClient.GetAllAsync();
+        products = response.Products;
+    }
+
+    private async Task AddProduct(ProductDto product)
+    {
+        var cartItem = new CartItem(product, 1, product.Price);
+        await CartState.AddAsync(cartItem, ComponentDetached);
+        SnackbarService.ShowSuccess($"{product.Name} added");
+    }
+}
