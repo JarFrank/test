@@ -12,8 +12,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
 
+	<Import Project="../BlazorStaticWebApps.BuildProperties" />
 
-  <ItemGroup>
+	<ItemGroup>
 	<ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
